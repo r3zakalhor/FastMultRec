@@ -1,2 +1,2 @@
-# FastMultRec
-Fast Multi Reconciliation method
+# FastMultRec (Fast Multi Reconciliation)
+
