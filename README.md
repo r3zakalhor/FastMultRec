@@ -1,5 +1,4 @@
 
-
 # FastMultRec: Fast Multiple Reconciliation
 
 ### Compiling
@@ -18,7 +17,7 @@ This will produce the `segrec` executable.
 Alternatively, if you'd prefer to compile manually, you can use the following command:
 
 ```bash
-g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex.h node.h SegmentalReconciler.h treeinfo.h treeiterator.h util.h genespeciestreeutil.cpp newicklex.cpp node.cpp SegmentalReconciler.cpp treeinfo.cpp treeiterator.cpp -o segrec
+g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex.h node.h SegmentalReconciler.h treeinfo.h treeiterator.h util.h ReconciliationTester.h genespeciestreeutil.cpp newicklex.cpp node.cpp SegmentalReconciler.cpp treeinfo.cpp treeiterator.cpp ReconciliationTester.cpp -o segrec
 ```
 
 (Note: You can add additional optimization flags if needed.)
@@ -58,7 +57,9 @@ Here’s an example of how to run the program:
 
 ---
 
-### SimPhy Integration
+### SimPhy 
+
+https://github.com/adamallo/SimPhy/wiki/Manual
 
 #### Postorder Labeling
 
@@ -97,7 +98,3 @@ python compare_mapping.py $firstmapping $secondmapping $SpeciesTree $Output
 ### All-in-One Script
 
 For convenience, you can find a bash script that performs all the steps mentioned above in one go. It’s located in `supplementaries/simphy_simulation.sh`.
-
---- 
-
-This streamlined structure ensures easy compilation and usage while providing clear instructions for running reconciliations with various algorithms.
