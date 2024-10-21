@@ -18,6 +18,7 @@ executable
 
 
 * If you'd really like to compile manually, you could do:
+  
 g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex.h node.h SegmentalReconciler.h treeinfo.h treeiterator.h util.h genespeciestreeutil.cpp newicklex.cpp node.cpp SegmentalReconciler.cpp treeinfo.cpp treeiterator.cpp  -o segrec
 
 (possibly add optimization flags)
