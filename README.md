@@ -1,4 +1,4 @@
-# FastMultRec: Fast Multiple Reconciliation
+# FastMultRec: Fast Multiple Reconciliation program
 
 ### Compiling
 
