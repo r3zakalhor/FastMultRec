@@ -11,12 +11,12 @@ cmake ..
 make
 ```
 
-This will produce the `segrec` executable.
+This will produce the `FastMultRec` executable.
 
 Alternatively, to compile manually, use this command:
 
 ```bash
-g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex.h node.h SegmentalReconciler.h treeinfo.h treeiterator.h util.h ReconciliationTester.h genespeciestreeutil.cpp newicklex.cpp node.cpp SegmentalReconciler.cpp treeinfo.cpp treeiterator.cpp ReconciliationTester.cpp -o segrec
+g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex.h node.h SegmentalReconciler.h treeinfo.h treeiterator.h util.h ReconciliationTester.h genespeciestreeutil.cpp newicklex.cpp node.cpp SegmentalReconciler.cpp treeinfo.cpp treeiterator.cpp ReconciliationTester.cpp -o FastMultRec
 ```
 
 (Note: Additional optimization flags can be added if required.)
@@ -28,13 +28,13 @@ g++ -std=c++11 -O3 main.cpp define.h genespeciestreeutil.h hashtable.h newicklex
 To run the program, use the following example command:
 
 ```bash
-./segrec -d 5 -l 1 -gf ../data/gene_trees.txt -sf ../data/s_tree.newick -spsep "_" -spindex 0 -o output.txt -al greedy
+./FastMultRec -d 5 -l 1 -gf ../data/gene_trees.txt -sf ../data/s_tree.newick -spsep "_" -spindex 0 -o output.txt -al FastMultRec
 ```
 
 - `-al` specifies the reconciliation algorithm. Options:
   - `simphy`: Use the original mapping from SimPhy.
   - `LCA`: Use the LCA mapping.
-  - Any other value: Use the **greedy** remapping algorithm.
+  - Any other value: Use the **FastMultRec** remapping algorithm.
 
 #### Required Arguments:
 - At least one of `-g` or `-gf` must be provided, and at least one of `-s` or `-sf` must be provided.
@@ -42,7 +42,7 @@ To run the program, use the following example command:
   - `-gf [file]`: File containing gene trees in Newick format, separated by `;`.
   - `-s [newick]`: Species tree in Newick format.
   - `-sf [file]`: File containing the species tree in Newick format.
-  - `-al [LCA, simphy, greedy]`: Algorithm to use for reconciliation.
+  - `-al [LCA, simphy, FastMultRec]`: Algorithm to use for reconciliation.
 
 #### Optional Arguments:
 - `--help`: Display help message.
@@ -83,4 +83,27 @@ To calculate recall and precision for duplications, follow these steps:
 
 Use the script `supplementaries/apply_NNIs.sh` to apply NNIs (Nearest Neighbor Interchanges) to SimPhy simulations. You can set the number of NNIs applied to each gene tree via the `k` parameter in the script. This script uses `apply_NNIs.py`.
 
---- 
+
+
+### Stochastic Version
+
+To run the stochastic version of FastMultRec, use the following command:
+
+```bash
+./FastMultRec -d 5 -l 1 -gf ../data/gene_trees.txt -sf ../data/s_tree.newick -spsep "_" -spindex 0 -o output.txt -al stochastic -tmp 1 -stoloops 2000
+```
+
+#### Parameters:
+- `-d [double]`: Cost for one height of duplication.
+- `-l [double]`: Cost for one loss.
+- `-gf [file]`: File containing gene trees in Newick format, separated by `;`.
+- `-sf [file]`: File containing the species tree in Newick format.
+- `-spsep [string]`: Separator between gene and species in gene names (default: `__`).
+- `-spindex [int]`: Position of the species in gene names after splitting by the separator (default: 0).
+- `-o [file]`: Output file.
+- `-al [stochastic]`: Specifies the use of the stochastic reconciliation algorithm.
+- `-tmp [double]`: Specifies the temperature value for the stochastic algorithm.
+- `-stoloops [int]`: Number of loops after which the algorithm stops if no improvement is detected.
+
+
+
