@@ -1,4 +1,4 @@
-# FastMultRec: Fast Multiple Reconciliation program
+# FastMultRec: Fast Multiple gene trees Reconciliation program
 
 ### Compiling
 
